@@ -1,0 +1,7 @@
+<h3>Loggers</h3>
+<div *ngIf="loggerService.logs.length">
+    <button (click)="onAllClear()">All Clear</button>
+    <ul>
+        <li *ngFor="let log of loggerService.getLogs()">{{log}}</li>
+    </ul>
+</div>

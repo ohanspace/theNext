@@ -1,0 +1,11 @@
+<h2>
+  Featured Pages
+</h2>
+
+<div>
+  <ul>
+    <li *ngFor="let page of pages">
+      <a routerLink="/page-detail/{{page.id}}">{{page.title}}</a>
+    </li>
+  </ul>
+</div>
