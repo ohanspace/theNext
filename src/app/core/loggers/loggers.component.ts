@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoggerService} from '../core/services/logger.service';
+import {LoggerService} from '../services/logger.service';
 
 @Component({
   selector: 'app-loggers',
@@ -15,5 +15,5 @@ export class LoggersComponent implements OnInit {
   onAllClear() {
     this.loggerService.clear();
   }
-
 }
+
