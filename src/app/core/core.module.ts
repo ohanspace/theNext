@@ -8,13 +8,18 @@ import {LoggersComponent} from './loggers/loggers.component';
 import { HeaderComponent } from './header/header.component';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AngularFireModule} from 'angularfire2';
+import {environment} from '../../environments/environment';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
 
 @NgModule({
   imports: [
     CommonModule,
     CoreRoutingModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   exports: [
     HeaderComponent
