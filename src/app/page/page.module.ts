@@ -5,6 +5,7 @@ import {PageDetailComponent} from './page-detail/page-detail.component';
 import {PageService} from './services/page.service';
 import {PageRoutingModule} from './page-routing.module';
 import {LoggerService} from '../core/services/logger.service';
+import {FeaturedPagesComponent} from './featured-pages/featured-pages.component';
 
 @NgModule({
   imports: [
@@ -12,8 +13,9 @@ import {LoggerService} from '../core/services/logger.service';
     PageRoutingModule
   ],
   declarations: [
-      PagesComponent,
-      PageDetailComponent
+    PagesComponent,
+    PageDetailComponent,
+    FeaturedPagesComponent
   ],
     providers: [PageService, LoggerService]
 })

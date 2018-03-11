@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Page} from '../page/models/Page';
-import {PageService} from '../page/services/page.service';
+import {Page} from '../models/Page';
+import {PageService} from '../services/page.service';
 
 @Component({
   selector: 'app-featured-pages',
