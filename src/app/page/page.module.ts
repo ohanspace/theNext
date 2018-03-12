@@ -6,6 +6,9 @@ import {PageService} from './services/page.service';
 import {PageRoutingModule} from './page-routing.module';
 import {LoggerService} from '../core/services/logger.service';
 import {FeaturedPagesComponent} from './featured-pages/featured-pages.component';
+import {PagesFbDataSource} from './data/pages-fb-data-source';
+import {PagesRepository} from './data/pages-repository';
+import {PagesDataSource} from './data/pages-data-source';
 
 @NgModule({
   imports: [
@@ -17,6 +20,11 @@ import {FeaturedPagesComponent} from './featured-pages/featured-pages.component'
     PageDetailComponent,
     FeaturedPagesComponent
   ],
-    providers: [PageService, LoggerService]
+  providers: [
+    PageService,
+    LoggerService,
+    PagesRepository,
+    {provide: PagesDataSource, useClass: PagesFbDataSource}
+  ]
 })
 export class PageModule { }

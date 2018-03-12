@@ -5,16 +5,19 @@ import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {LoggerService} from '../../core/services/logger.service';
 import {AngularFirestore} from 'angularfire2/firestore';
+import {PagesRepository} from '../data/pages-repository';
 
 @Injectable()
 export class PageService {
 
-  constructor(private loggerService: LoggerService, private firestore: AngularFirestore) { }
+  constructor(private loggerService: LoggerService,
+              private firestore: AngularFirestore,
+              private pagesRepository: PagesRepository) { }
 
   getPages(): Observable<Page[]> {
     this.loggerService.add('PageService: fetched pages');
     // return of(PAGES);
-    return (<Observable<Page[]>>this.firestore.collection('pages').valueChanges());
+    return this.pagesRepository.getPages();
   }
 
   getFeaturedPages(): Observable<Page[]> {
