@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfigService } from './core/services/config.service';
+import { AppConfigService } from './app-config.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { ConfigService } from './core/services/config.service';
 })
 export class AppComponent implements OnInit {
   title = 'TheNext';
-  constructor(private router: Router, private configService: ConfigService) {
+  constructor(private router: Router, private configService: AppConfigService) {
   }
   ngOnInit(): void {
     console.log('app component init');

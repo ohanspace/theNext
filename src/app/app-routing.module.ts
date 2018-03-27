@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {NotFoundComponent} from './not-found/not-found.component';
-
+import { NotFoundComponent } from './core/not-found/not-found.component';
 const routes: Routes = [
     {
       path: '',
@@ -19,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class CoreRoutingModule { }
+export class AppRoutingModule { }

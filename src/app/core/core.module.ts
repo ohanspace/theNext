@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CoreRoutingModule } from './core-routing.module';
 import {LoggerService} from './services/logger.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {LoggersComponent} from './loggers/loggers.component';
@@ -11,12 +10,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../../environments/environment';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
-import {ConfigService} from './services/config.service';
-
 @NgModule({
   imports: [
     CommonModule,
-    CoreRoutingModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -30,6 +26,6 @@ import {ConfigService} from './services/config.service';
     NotFoundComponent,
     HeaderComponent
   ],
-  providers: [LoggerService, ConfigService]
+  providers: [LoggerService]
 })
 export class CoreModule { }

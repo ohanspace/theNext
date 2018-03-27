@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, SystemJsNgModuleLoader } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
 
 
 import { AppComponent } from './app.component';
 import {CoreModule} from './core/core.module';
 import {RouterModule} from '@angular/router';
-import { ConfigService } from './core/services/config.service';
+import { AppConfigService } from './app-config.service';
 
 
 @NgModule({
@@ -14,10 +15,11 @@ import { ConfigService } from './core/services/config.service';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
+    AppRoutingModule,
     CoreModule,
-    RouterModule
   ],
-  providers: [SystemJsNgModuleLoader, ConfigService],
+  providers: [SystemJsNgModuleLoader, AppConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
