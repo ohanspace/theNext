@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, SystemJsNgModuleLoader } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
 import {CoreModule} from './core/core.module';
 import {RouterModule} from '@angular/router';
+import { ConfigService } from './core/services/config.service';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import {RouterModule} from '@angular/router';
     CoreModule,
     RouterModule
   ],
-  providers: [],
+  providers: [SystemJsNgModuleLoader, ConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

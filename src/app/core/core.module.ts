@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../../environments/environment';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {ConfigService} from './services/config.service';
 
 @NgModule({
   imports: [
@@ -29,6 +30,6 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
     NotFoundComponent,
     HeaderComponent
   ],
-  providers: [LoggerService]
+  providers: [LoggerService, ConfigService]
 })
 export class CoreModule { }

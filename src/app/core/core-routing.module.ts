@@ -5,12 +5,8 @@ import {NotFoundComponent} from './not-found/not-found.component';
 const routes: Routes = [
     {
       path: '',
-      redirectTo: 'page',
+      redirectTo: 'pageModule',
       pathMatch: 'full'
-    },
-    {
-      path: 'page',
-      loadChildren: 'app/page/page.module#PageModule'
     },
     {
       path: '**',
