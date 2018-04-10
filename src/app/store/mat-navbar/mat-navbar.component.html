@@ -1,0 +1,25 @@
+<mat-toolbar>
+  <span routerLink="/store" class="clickable">eShop</span>
+  <button mat-button routerLink="/store/shopping-cart">
+    <mat-icon>shopping_cart</mat-icon>    
+    <span>Shopping Cart</span>    
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu" color="primary">
+    <span>Borhan Chowdhury</span> 
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <a mat-menu-item routerLink="/store/my-orders">
+      <span>My Orders</span>
+    </a>
+    <a mat-menu-item routerLink="/store/admin/orders">
+      <span>Manage Orders</span>
+    </a>
+    <a mat-menu-item routerLink="/store/admin/products">
+      <span>Manage Products</span>
+    </a>
+    <a mat-menu-item>
+      <span>Logout</span>
+    </a>
+  </mat-menu>
+</mat-toolbar>
