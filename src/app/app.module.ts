@@ -9,6 +9,7 @@ import {CoreModule} from './core/core.module';
 import {RouterModule} from '@angular/router';
 import { AppConfigService } from './app-config.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomMaterialModule } from './custom-material/custom-material.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     RouterModule,
     AppRoutingModule,
+    CustomMaterialModule,
     CoreModule,
     NgbModule.forRoot(),
     AuthModule

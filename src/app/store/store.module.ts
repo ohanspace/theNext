@@ -1,13 +1,8 @@
+import { CustomMaterialModule } from './../custom-material/custom-material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main/main.component';
 import { StoreRoutingModule } from './store-routing.module';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
@@ -22,16 +17,11 @@ import { MatNavbarComponent } from './mat-navbar/mat-navbar.component';
   imports: [
     CommonModule,
     StoreRoutingModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
+    CustomMaterialModule,
     NgbModule
   ],
   declarations: [
     MainComponent,
-    BsNavbarComponent,
     ProductsComponent,
     ShoppingCartComponent,
     CheckOutComponent,
@@ -39,6 +29,7 @@ import { MatNavbarComponent } from './mat-navbar/mat-navbar.component';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    MatNavbarComponent  ]
+    MatNavbarComponent
+  ]
 })
 export class StoreModule { }
