@@ -1,3 +1,4 @@
+import { AuthService } from './auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppConfigService } from './app-config.service';
@@ -8,8 +9,19 @@ import { AppConfigService } from './app-config.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'TheNext';
-  constructor(private router: Router, private configService: AppConfigService) {
+  constructor(private router: Router, 
+    private configService: AppConfigService, 
+    private authService: AuthService) {
+
+      authService.user$.subscribe(user => {
+        if (user) {
+          const returnUrl = localStorage.getItem('returnUrl');
+          if (returnUrl) {
+            localStorage.removeItem('returnUrl');
+            router.navigateByUrl(returnUrl);
+          }
+        }
+      });
   }
   ngOnInit(): void {
     console.log('app component init');
