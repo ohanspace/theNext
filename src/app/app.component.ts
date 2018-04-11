@@ -1,3 +1,4 @@
+import { UserService } from './auth/user/user.service';
 import { AuthService } from './auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,12 +10,15 @@ import { AppConfigService } from './app-config.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router, 
+  constructor(
+    private router: Router, 
     private configService: AppConfigService, 
+    private userService: UserService,
     private authService: AuthService) {
 
       authService.user$.subscribe(user => {
         if (user) {
+          userService.save(user);
           const returnUrl = localStorage.getItem('returnUrl');
           if (returnUrl) {
             localStorage.removeItem('returnUrl');

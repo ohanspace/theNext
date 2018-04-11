@@ -1,3 +1,4 @@
+import { UserService } from './user/user.service';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { CustomMaterialModule } from './../custom-material/custom-material.module';
@@ -12,6 +13,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
     CustomMaterialModule
   ],
   declarations: [LoginComponent],
-  providers: [AngularFireAuth, AuthService, AuthGuard]
+  providers: [AngularFireAuth, AuthService, AuthGuard, UserService]
 })
 export class AuthModule { }
