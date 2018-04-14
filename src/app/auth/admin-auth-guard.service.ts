@@ -13,7 +13,6 @@ export class AdminAuthGuard implements CanActivate {
       return this.authService
         .user$
         .map(user => {
-          console.log(user);
           return user.isAdmin;
         });
   }
