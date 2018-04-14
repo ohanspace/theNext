@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService) {
 
-      authService.user$.subscribe(user => {
+      authService.authState$.subscribe(user => {
         if (user) {
           userService.save(user);
           const returnUrl = localStorage.getItem('returnUrl');

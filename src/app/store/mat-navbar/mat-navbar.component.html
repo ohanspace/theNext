@@ -1,8 +1,8 @@
 <mat-toolbar>
   <span routerLink="/store" class="clickable">eShop</span>
   <a mat-button routerLink="/store/shopping-cart">
+    <span>Shopping Cart</span> 
     <mat-icon>shopping_cart</mat-icon>    
-    <span>Shopping Cart</span>    
   </a>
 
   <ng-template #anonymousUser>
@@ -11,7 +11,7 @@
     </button>
   </ng-template>
   
-  <button *ngIf="user$ | async as user; else anonymousUser" mat-icon-button [matMenuTriggerFor]="menu" color="primary">
+  <button *ngIf="user; else anonymousUser" mat-icon-button [matMenuTriggerFor]="menu" color="primary">
     <span>{{user.displayName}}</span> 
     <mat-icon>arrow_drop_down</mat-icon>
   </button>
@@ -19,12 +19,15 @@
     <a mat-menu-item routerLink="/store/my-orders">
       <span>My Orders</span>
     </a>
-    <a mat-menu-item routerLink="/store/admin/orders">
-      <span>Manage Orders</span>
-    </a>
-    <a mat-menu-item routerLink="/store/admin/products">
-      <span>Manage Products</span>
-    </a>
+    <ng-container *ngIf="user?.isAdmin">
+      <a mat-menu-item routerLink="/store/admin/orders">
+        <span>Manage Orders</span>
+      </a>
+      <a mat-menu-item routerLink="/store/admin/products">
+        <span>Manage Products</span>
+      </a>
+    </ng-container>
+      
     <a mat-menu-item>
       <span (click)="logout()">Logout</span>
     </a>

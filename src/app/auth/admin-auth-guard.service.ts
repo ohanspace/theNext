@@ -10,11 +10,10 @@ export class AdminAuthGuard implements CanActivate {
   constructor(private authService: AuthService, private userService: UserService) { }
 
   canActivate(): Observable<boolean> {
-      return this.authService.user$
-        .switchMap(firebaseUser => {
-          return this.userService.get(firebaseUser.uid);
-        })
+      return this.authService
+        .user$
         .map(user => {
+          console.log(user);
           return user.isAdmin;
         });
   }

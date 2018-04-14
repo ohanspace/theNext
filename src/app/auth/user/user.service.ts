@@ -11,7 +11,7 @@ export class UserService {
 
   save(user: firebase.User) {
     this.afDb.object('/users/' + user.uid).update({
-      name: user.displayName,
+      displayName: user.displayName,
       email: user.email
     });
   }

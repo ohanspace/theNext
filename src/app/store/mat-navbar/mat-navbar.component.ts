@@ -1,3 +1,4 @@
+import { User } from './../../auth/user/user.model';
 import { AuthService } from './../../auth/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -9,10 +10,10 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./mat-navbar.component.css']
 })
 export class MatNavbarComponent {
-  user$: Observable<firebase.User>;
+  user: User;
 
   constructor(private authService: AuthService) {
-    this.user$ = this.authService.user$;
+    this.authService.user$.subscribe(user => {this.user = user; console.log(this.user); });
   }
 
   logout() {
