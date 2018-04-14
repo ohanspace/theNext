@@ -1,3 +1,4 @@
+import { CategoryService } from './service/category.service';
 import { CustomMaterialModule } from './../custom-material/custom-material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatNavbarComponent } from './mat-navbar/mat-navbar.component';
+import { ProductFormComponent } from './product-form/product-form.component';
 
 @NgModule({
   imports: [
@@ -29,7 +31,9 @@ import { MatNavbarComponent } from './mat-navbar/mat-navbar.component';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    MatNavbarComponent
-  ]
+    MatNavbarComponent,
+    ProductFormComponent
+  ],
+  providers: [ CategoryService ]
 })
 export class StoreModule { }

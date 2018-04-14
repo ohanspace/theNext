@@ -1,3 +1,4 @@
+import { ProductFormComponent } from './product-form/product-form.component';
 import { AdminAuthGuard } from './../auth/admin-auth-guard.service';
 import { AuthGuard } from './../auth/auth-guard.service';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
             { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
 
             { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+            { path: 'admin/products/create', component: ProductFormComponent, canActivate: [AuthGuard, AdminAuthGuard]},
             { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard]}
         ]
     },
