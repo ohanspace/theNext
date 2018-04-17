@@ -1,3 +1,5 @@
+import { ProductService } from './service/product.service';
+import { SharedModule } from './../shared/shared.module';
 import { CategoryService } from './service/category.service';
 import { CustomMaterialModule } from './../custom-material/custom-material.module';
 import { NgModule } from '@angular/core';
@@ -20,6 +22,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
     CommonModule,
     StoreRoutingModule,
     CustomMaterialModule,
+    SharedModule,
     NgbModule
   ],
   declarations: [
@@ -34,6 +37,6 @@ import { ProductFormComponent } from './product-form/product-form.component';
     MatNavbarComponent,
     ProductFormComponent
   ],
-  providers: [ CategoryService ]
+  providers: [ CategoryService, ProductService ]
 })
 export class StoreModule { }

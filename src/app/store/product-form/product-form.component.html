@@ -1,30 +1,63 @@
-<h1>Add a new product</h1>
-<form class="standard-form">
-  <!-- product name -->
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Product name"/>
-  </mat-form-field>
+<h2>Add a new product</h2>
+<div class="row">
+  <div class="column">
+    <form #f="ngForm" class="standard-form" (ngSubmit)="save(f.value)">
+            <!-- product name -->
+            <mat-form-field class="full-width">
+              <input matInput ngModel name="name" #name="ngModel"
+                placeholder="Product name" required minlength="4"/>
+            </mat-form-field>
+      
+            <!-- price -->
+            <mat-form-field class="full-width">
+              <span matPrefix>TK &nbsp;</span>
+              <input  type="number" matInput ngModel #price="ngModel" 
+                name="price" placeholder="Price" required min="0"/>
+              <mat-error *ngIf="price.errors?.required">Please enter a price</mat-error>
+              <mat-error *ngIf="price.errors?.min">price cant be negetive</mat-error>
+            </mat-form-field>
+      
+            <!-- category -->
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Select Category" ngModel #category="ngModel"
+                name="category" required>
+                <mat-option *ngFor="let category of categories"
+                value="{{category?.id}}">
+                  {{category.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      
+            <!-- image url -->
+            <mat-form-field class="full-width">
+                <input matInput ngModel url required #imageUrl="ngModel"
+                name="imageUrl" placeholder="image url"/>
+            </mat-form-field>
+      
+            <!-- save button -->
+            <button mat-raised-button color="primary" [disabled]="!f.form.valid">
+              Save
+            </button>
+            
+          </form>
+  </div>
+  <div class="column">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <h2>{{name.value}}</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{imageUrl.value}}"/>
+        <mat-card-content>
+          <mat-chip>{{category.value}}</mat-chip>
+          <p>{{price.value | currency:'BDT'}}</p>
+        </mat-card-content>
+    </mat-card>
+  </div>        
+</div>
 
-  <!-- price -->
-  <mat-form-field class="full-width">
-    <span matPrefix>BDT &nbsp;</span>
-    <input matInput type="number" placeholder="Price"/>
-  </mat-form-field>
 
-  <!-- category -->
-  <mat-form-field class="full-width">
-    <mat-select placeholder="Select Category">
-      <mat-option *ngFor="let category of categories" value="category?.id">
-        {{category.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
 
-  <!-- image url -->
-  <mat-form-field class="full-width">
-      <input matInput placeholder="image url"/>
-  </mat-form-field>
+    
 
-  <button mat-raised-button color="primary">Save</button>
-
-</form>

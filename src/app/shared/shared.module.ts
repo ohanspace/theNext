@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule} from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    CustomFormsModule
   ],
-  declarations: []
+  declarations: [],
+  exports: [CommonModule, FormsModule, CustomFormsModule]
 })
 export class SharedModule { }
