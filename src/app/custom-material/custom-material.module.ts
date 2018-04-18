@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatSelectModule,
     MatGridListModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTableModule
   ],
   exports: [
     MatCheckboxModule,
@@ -37,7 +39,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatSelectModule,
     MatGridListModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTableModule
   ],
   declarations: []
 })

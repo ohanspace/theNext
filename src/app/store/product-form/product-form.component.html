@@ -1,57 +1,63 @@
-<h2>Add a new product</h2>
 <div class="row">
   <div class="column">
+    <h2>Add a new product</h2>
     <form #f="ngForm" class="standard-form" (ngSubmit)="save(f.value)">
-            <!-- product name -->
-            <mat-form-field class="full-width">
-              <input matInput ngModel name="name" #name="ngModel"
-                placeholder="Product name" required minlength="4"/>
-            </mat-form-field>
-      
-            <!-- price -->
-            <mat-form-field class="full-width">
-              <span matPrefix>TK &nbsp;</span>
-              <input  type="number" matInput ngModel #price="ngModel" 
-                name="price" placeholder="Price" required min="0"/>
-              <mat-error *ngIf="price.errors?.required">Please enter a price</mat-error>
-              <mat-error *ngIf="price.errors?.min">price cant be negetive</mat-error>
-            </mat-form-field>
-      
-            <!-- category -->
-            <mat-form-field class="full-width">
-              <mat-select placeholder="Select Category" ngModel #category="ngModel"
-                name="category" required>
-                <mat-option *ngFor="let category of categories"
-                value="{{category?.id}}">
-                  {{category.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-      
-            <!-- image url -->
-            <mat-form-field class="full-width">
-                <input matInput ngModel url required #imageUrl="ngModel"
-                name="imageUrl" placeholder="image url"/>
-            </mat-form-field>
-      
-            <!-- save button -->
-            <button mat-raised-button color="primary" [disabled]="!f.form.valid">
-              Save
-            </button>
-            
-          </form>
+        <!-- product name -->
+        <mat-form-field class="full-width">
+          <input matInput [(ngModel)]="product.name" name="name" #name="ngModel"
+            placeholder="Product name" required minlength="4"/>
+        </mat-form-field>
+  
+        <!-- price -->
+        <mat-form-field class="full-width">
+          <span matPrefix>TK &nbsp;</span>
+          <input  type="number" matInput [(ngModel)]="product.price"
+            #price="ngModel" name="price" placeholder="Price" required min="0"/>
+          <mat-error *ngIf="price.errors?.required">Please enter a price</mat-error>
+          <mat-error *ngIf="price.errors?.min">price cant be negetive</mat-error>
+        </mat-form-field>
+  
+        <!-- category -->
+        <mat-form-field class="full-width">
+          <mat-select [(ngModel)]="product.category" 
+            #category="ngModel" name="category" placeholder="Select Category" required>
+            <mat-option *ngFor="let category of categories"
+            value="{{category?.id}}">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <!-- image url -->
+        <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="product.imageUrl" #imageUrl="ngModel"
+            name="imageUrl" placeholder="image url" url required />
+        </mat-form-field>
+  
+        <!-- save button -->
+        <button mat-raised-button color="primary" [disabled]="!f.form.valid">
+          Save
+        </button>
+
+        <!-- delete button -->
+        <button type="button" mat-raised-button color="warn" 
+          *ngIf="productId" (click)="delete()">
+          delete
+        </button>
+        
+    </form>
   </div>
   <div class="column">
     <mat-card>
         <mat-card-header>
           <mat-card-title>
-            <h2>{{name.value}}</h2>
+            <h2>{{product.name}}</h2>
           </mat-card-title>
         </mat-card-header>
-        <img mat-card-image src="{{imageUrl.value}}"/>
+        <img mat-card-image *ngIf="product.imageUrl" src="{{product.imageUrl}}"/>
         <mat-card-content>
-          <mat-chip>{{category.value}}</mat-chip>
-          <p>{{price.value | currency:'BDT'}}</p>
+          <mat-chip>{{product.category}}</mat-chip>
+          <p>{{product.price | currency:'BDT'}}</p>
         </mat-card-content>
     </mat-card>
   </div>        
