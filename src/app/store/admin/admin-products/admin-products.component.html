@@ -3,29 +3,42 @@
   <span>New Product</span>
 </button>
 
-<mat-table #table [dataSource]="dataSource">
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+<div class="container mat-elevation-z8">
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput (keyup)="applyFilter($event.target.value)"
+       placeholder="filter">
+    </mat-form-field>
+  </div>
+  <mat-table #table [dataSource]="dataSource">
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+    <!-- column: product name -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Product Name</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{product.name}}</mat-cell>
+    </ng-container>
   
-  <!-- product name -->
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef>Product Name</mat-header-cell>
-    <mat-cell *matCellDef="let product">{{product.name}}</mat-cell>
-  </ng-container>
-
-  <!-- product price -->
-  <ng-container matColumnDef="price">
-    <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
-    <mat-cell *matCellDef="let product">{{product.price}}</mat-cell>
-  </ng-container>
-
-  <!-- edit link -->
-  <ng-container matColumnDef="edit">
-    <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
-    <mat-cell *matCellDef="let product">
-      <a routerLink="/store/admin/products/{{product.id}}">Edit</a>
-    </mat-cell>
-  </ng-container>
-
- 
-</mat-table>
+    <!-- column: product price -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{product.price}}</mat-cell>
+    </ng-container>
+  
+    <!-- column: edit link -->
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+      <mat-cell *matCellDef="let product">
+        <a routerLink="/store/admin/products/{{product.id}}">Edit</a>
+      </mat-cell>
+    </ng-container>
+  
+   
+  </mat-table> 
+  <mat-paginator #paginator
+    [pageSize]="3"
+    [pageSizeOptions]="[5, 10, 20]"
+    [showFirstLastButtons]="true">
+</mat-paginator> 
+</div>
