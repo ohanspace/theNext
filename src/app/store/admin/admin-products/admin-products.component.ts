@@ -28,7 +28,6 @@ export class AdminProductsComponent implements AfterViewInit {
    
 
   ngAfterViewInit(): void {
-    console.log(this.dataSource);
     this.dataSource.paginator = this.paginator;
   }
 

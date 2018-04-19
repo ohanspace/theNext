@@ -1,11 +1,11 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProductService } from './../service/product.service';
-import { CategoryService } from './../service/category.service';
-import { Category } from './../models/category.model';
+import { ProductService } from './../../service/product.service';
+import { CategoryService } from './../../service/category.service';
+import { Category } from './../../models/category.model';
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import 'rxjs/add/operator/take';
-import { Product } from '../models/product.model';
+import { Product } from './../../models/product.model';
 
 @Component({
   selector: 'app-product-form',

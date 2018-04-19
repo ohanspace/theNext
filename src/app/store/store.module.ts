@@ -15,7 +15,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatNavbarComponent } from './mat-navbar/mat-navbar.component';
-import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 @NgModule({
   imports: [

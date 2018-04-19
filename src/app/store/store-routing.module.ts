@@ -1,4 +1,4 @@
-import { ProductFormComponent } from './product-form/product-form.component';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { AdminAuthGuard } from './../auth/admin-auth-guard.service';
 import { AuthGuard } from './../auth/auth-guard.service';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
