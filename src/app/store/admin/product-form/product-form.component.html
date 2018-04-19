@@ -48,7 +48,9 @@
     </form>
   </div>
   <div class="column">
-    <mat-card>
+
+    <!-- product CARD -->
+    <mat-card *ngIf="product.name">
         <mat-card-header>
           <mat-card-title>
             <h2>{{product.name}}</h2>
