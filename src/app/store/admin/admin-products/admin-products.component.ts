@@ -1,7 +1,7 @@
 import { ProductService } from './../../service/product.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Product } from '../../models/product.model';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-admin-products',
@@ -14,6 +14,7 @@ export class AdminProductsComponent implements AfterViewInit {
   displayedColumns = ['name', 'price', 'edit'];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   
   constructor(private productService: ProductService) {
     productService.getAll()
@@ -29,6 +30,7 @@ export class AdminProductsComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 }
