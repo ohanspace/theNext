@@ -14,6 +14,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatChipsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSidenavModule
   ],
   exports: [
     MatCheckboxModule,
@@ -46,7 +48,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatChipsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSidenavModule
   ],
   declarations: []
 })

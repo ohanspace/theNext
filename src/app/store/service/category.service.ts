@@ -8,7 +8,7 @@ export class CategoryService {
 
   constructor(private afDb: AngularFireDatabase) { }
 
-  getCategories(): Observable<Category[]> {
+  getAll(): Observable<Category[]> {
     return this.afDb.list('/product-categories', ref => ref.orderByChild('name'))
       .snapshotChanges()
       .map(items => 

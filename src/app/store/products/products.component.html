@@ -1,3 +1,50 @@
-<p>
-  products works!
-</p>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" closed>
+    <ul>
+      <li *ngFor="let category of categories">{{category.name}}</li>
+    </ul>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    
+    <button mat-icon-button (click)="sidenav.toggle()" >
+      <mat-icon>menu</mat-icon>
+    </button>
+    
+    <mat-grid-list cols="3" rowHeight="1:2">
+      <mat-grid-tile *ngFor="let product of products">
+        <mat-card *ngIf="product.name">
+            <mat-card-header>
+              <!-- product name -->
+              <mat-card-title>
+                <h2>{{product.name}}</h2>
+              </mat-card-title>
+            </mat-card-header>
+    
+            <!-- product image -->
+            <img mat-card-image 
+                  style="width:100%; 
+                  height:auto;"
+              *ngIf="product.imageUrl" 
+              [src]="product.imageUrl"/>
+    
+            <mat-card-content>
+              <!-- product category -->
+              <mat-chip>{{product.category}}</mat-chip>
+              <!-- product price -->
+              <p>{{product.price | currency:'BDT'}}</p>
+            </mat-card-content>
+    
+            <!-- add to card button -->
+            <mat-card-actions>
+              <button mat-raised-button 
+                color="primary" style="width:100%">
+                Add to Cart
+              </button>
+            </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
