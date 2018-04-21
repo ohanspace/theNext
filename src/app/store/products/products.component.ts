@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from './../service/category.service';
 import { Category } from './../models/category.model';
 import { ProductService } from './../service/product.service';
@@ -12,18 +13,33 @@ import 'rxjs/add/operator/take';
 })
 export class ProductsComponent implements OnInit {
   categories: Category[];
-  products: Product[];
+  selectedCategory: string;
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
   
-  constructor(private categoryService: CategoryService,
-              private productService: ProductService) { 
+  constructor(
+      private route: ActivatedRoute,
+      private categoryService: CategoryService,
+      private productService: ProductService
+  ) { 
     categoryService.getAll().take(1)
       .subscribe(categories => this.categories = categories);
 
     productService.getAll()
-      .subscribe(products => this.products = products);
+      .subscribe(products => {
+        this.products = products;
+        
+        route.queryParamMap.subscribe(params => {
+          this.selectedCategory = params.get('category');
+          this.filteredProducts = (this.selectedCategory) ? 
+              this.products.filter(p => p.category === this.selectedCategory) 
+              : this.products;
+        });
+      });
+
   }
 
-  ngOnInit() {
+  ngOnInit() { 
   }
 
 }
