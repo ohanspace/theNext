@@ -50,22 +50,9 @@
   <div class="column">
 
     <!-- product CARD -->
-    <mat-card *ngIf="product.name">
-        <mat-card-header>
-          <mat-card-title>
-            <h2>{{product.name}}</h2>
-          </mat-card-title>
-        </mat-card-header>
-        <img mat-card-image *ngIf="product.imageUrl" src="{{product.imageUrl}}"/>
-        <mat-card-content>
-          <mat-chip>{{product.category}}</mat-chip>
-          <p>{{product.price | currency:'BDT'}}</p>
-        </mat-card-content>
-    </mat-card>
+    <product-card 
+        [product]="product" 
+        [showActions]="false">
+    </product-card>
   </div>        
 </div>
-
-
-
-    
-

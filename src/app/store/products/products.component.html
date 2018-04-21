@@ -4,43 +4,13 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    
     <button mat-icon-button (click)="sidenav.toggle()" >
       <mat-icon>menu</mat-icon>
     </button>
     
     <mat-grid-list cols="3" rowHeight="1:2">
       <mat-grid-tile *ngFor="let product of filteredProducts">
-        <mat-card *ngIf="product.name">
-            <mat-card-header>
-              <!-- product name -->
-              <mat-card-title>
-                <h2>{{product.name}}</h2>
-              </mat-card-title>
-            </mat-card-header>
-    
-            <!-- product image -->
-            <img mat-card-image
-                  style="width:100%; 
-                  height:auto;"
-              *ngIf="product.imageUrl" 
-              [src]="product.imageUrl"/>
-    
-            <mat-card-content>
-              <!-- product category -->
-              <mat-chip>{{product.category}}</mat-chip>
-              <!-- product price -->
-              <p>{{product.price | currency:'BDT'}}</p>
-            </mat-card-content>
-    
-            <!-- add to cart  button -->
-            <mat-card-actions>
-              <button mat-raised-button 
-                color="primary" style="width:100%">
-                Add to Cart
-              </button>
-            </mat-card-actions>
-        </mat-card>
+        <product-card [product]="product"></product-card>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-sidenav-content>

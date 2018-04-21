@@ -17,6 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatNavbarComponent } from './mat-navbar/mat-navbar.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './shared/product-card/product-card.component';
+import { ShoppingCartService } from './service/shopping-cart.service';
 
 @NgModule({
   imports: [
@@ -37,8 +39,9 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
     AdminOrdersComponent,
     MatNavbarComponent,
     ProductFormComponent,
-    ProductFilterComponent
+    ProductFilterComponent,
+    ProductCardComponent
   ],
-  providers: [ CategoryService, ProductService ]
+  providers: [ CategoryService, ProductService, ShoppingCartService ]
 })
 export class StoreModule { }
