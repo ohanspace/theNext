@@ -1,23 +1,6 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="over" closed>
-    <h3>Categories</h3>
-    <mat-divider></mat-divider>
-    
-    <mat-nav-list role="list">
-      <a mat-list-item 
-        routerLink="/store/products" 
-        [class.active]="!selectedCategory">
-        All Products
-      </a>
-      <a mat-list-item 
-          *ngFor="let cat of categories" role="listitem"
-          routerLink="/store/products" 
-          [queryParams]="{category: cat.id}"
-          [class.active]="cat.id === selectedCategory">
-          {{cat.name}}
-      </a>
-    </mat-nav-list>
-
+    <product-filter [selectedCategory]="selectedCategory"></product-filter>
   </mat-sidenav>
 
   <mat-sidenav-content>

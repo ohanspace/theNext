@@ -1,6 +1,4 @@
 import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from './../service/category.service';
-import { Category } from './../models/category.model';
 import { ProductService } from './../service/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product.model';
@@ -12,18 +10,14 @@ import 'rxjs/add/operator/take';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  categories: Category[];
-  selectedCategory: string;
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  
+  selectedCategory: string;
+
   constructor(
       private route: ActivatedRoute,
-      private categoryService: CategoryService,
       private productService: ProductService
   ) { 
-    categoryService.getAll().take(1)
-      .subscribe(categories => this.categories = categories);
 
     productService.getAll()
       .subscribe(products => {
