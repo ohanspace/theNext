@@ -26,17 +26,25 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: Product) {
-     const cartId = await this.getOrCreateCartId();
-     const item$ = await this.getCartItemRef(product.id);
-      
-      item$.valueChanges()
-        .take(1)
-        .subscribe(item => {
-                item$.update({
-                  product: product,
-                  quantity:  (item ? item.quantity : 0) + 1
-                });
-        });
+    this.changeItemQuantity(product, 1);
+  }
+
+  async removeFromCart(product: Product) {
+    this.changeItemQuantity(product, -1);
+  }
+
+  async changeItemQuantity(product: Product, changeValue) {
+    const cartId = await this.getOrCreateCartId();
+    const item$ = await this.getCartItemRef(product.id);
+     
+     item$.valueChanges()
+       .take(1)
+       .subscribe(item => {
+               item$.update({
+                 product: product,
+                 quantity:  (item ? item.quantity : 0) + changeValue
+               });
+       });
   }
 
   private async getCartItemRef(productId: string) {
