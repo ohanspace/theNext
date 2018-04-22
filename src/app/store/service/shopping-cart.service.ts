@@ -20,8 +20,22 @@ export class ShoppingCartService {
 
   async getItemQuantity(product: Product) {
     const item$ = await this.getCartItemRef(product.id);
-    item$.valueChanges().subscribe(item => {
+    return item$.valueChanges().map(item => {
       return item.quantity;
+    });
+  }
+
+
+  async getTotalQuantity() {
+    const cart$ = await this.getCart();
+    return cart$.map(cart => {
+        let totalQuantity = 0;
+        if (!cart.items) return totalQuantity;
+
+        for (const productId of Object.keys(cart.items)) {
+          totalQuantity += cart.items[productId].quantity;
+        } 
+        return totalQuantity;
     });
   }
 

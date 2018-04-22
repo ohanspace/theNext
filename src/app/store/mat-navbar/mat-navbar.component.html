@@ -1,7 +1,9 @@
 <mat-toolbar>
   <span routerLink="/store" class="clickable">eShop</span>
   <a mat-button routerLink="/store/shopping-cart">
-    <span>Shopping Cart</span> 
+    <span>Shopping Cart
+       <mat-chip>{{totalItemsInCart}}</mat-chip>
+    </span> 
     <mat-icon>shopping_cart</mat-icon>    
   </a>
 
