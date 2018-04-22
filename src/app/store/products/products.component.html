@@ -10,7 +10,10 @@
     
     <mat-grid-list cols="3" rowHeight="1:2">
       <mat-grid-tile *ngFor="let product of filteredProducts">
-        <product-card [product]="product"></product-card>
+        <product-card 
+          [product]="product"
+          [shoppingCart]="shoppingCart">
+        </product-card>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-sidenav-content>

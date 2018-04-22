@@ -13,33 +13,59 @@ const TOKEN_SHOPPING_CART_ID = 'shopping-cart-id';
 
 @Injectable()
 export class ShoppingCartService {
+  cart$: Observable<ShoppingCart>;
 
-  constructor(private afDb: AngularFireDatabase) { }
+  constructor(private afDb: AngularFireDatabase) {
+  }
+
+  async getItemQuantity(product: Product) {
+    const item$ = await this.getCartItemRef(product.id);
+    item$.valueChanges().subscribe(item => {
+      return item.quantity;
+    });
+  }
 
   async addToCart(product: Product) {
      const cartId = await this.getOrCreateCartId();
-     const item$ = this.afDb.object('/shopping-carts/'
-           + cartId + '/items/' + product.id);
+     const item$ = await this.getCartItemRef(product.id);
       
-      item$.snapshotChanges().take(1)
-        .map(item => <ShoppingCartItem> item.payload.val())
+      item$.valueChanges()
+        .take(1)
         .subscribe(item => {
-            if (item.quantity) 
-                item$.update({quantity:  item.quantity + 1});
-            else item$.set({product: product, quantity: 1});
+                item$.update({
+                  product: product,
+                  quantity:  (item ? item.quantity : 0) + 1
+                });
         });
   }
+
+  private async getCartItemRef(productId: string) {
+    const cartId = await this.getOrCreateCartId();
+   
+    return  this.afDb.object<ShoppingCartItem>('/shopping-carts/'
+               + cartId + '/items/' + productId);
+  }
+
+  async getCartItem( productId: string) {
+      const cartId = await this.getOrCreateCartId();
+      return this.afDb.object('/shopping-carts/'
+             + cartId + '/items/' + productId)
+             .snapshotChanges()
+             .map(item => <ShoppingCartItem> item.payload.val());
+  }
+
   private createCart() {
     return this.afDb.list('/shopping-carts')
             .push({
-            dateCreated: new Date().getTime()
+                dateCreated: new Date().getTime()
             });
 
   }
 
-  private getCart(cartId: string): Observable<ShoppingCart> {
-      return <Observable<ShoppingCart>>
-             this.afDb.object('/shopping-carts/' + cartId)
+  async getCart() {
+    const cartId = await this.getOrCreateCartId();
+    return <Observable<ShoppingCart>>
+            this.afDb.object('/shopping-carts/' + cartId)
             .valueChanges();
   }
 
