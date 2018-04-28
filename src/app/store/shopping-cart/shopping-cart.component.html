@@ -13,13 +13,16 @@
     <mat-cell *matCellDef="let item">{{item.product.name}}</mat-cell>
   </ng-container>
 
-  <!-- column: product qunatity -->
-  <ng-container matColumnDef="quantity">
-    <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
-    <mat-cell *matCellDef="let item">{{item.quantity}}</mat-cell>
-  </ng-container>
 
-  <!-- column: product total price -->
+  <!-- column: change product qunatity -->
+  <ng-container matColumnDef="changeQuantity">
+      <mat-header-cell *matHeaderCellDef>Change Quantity</mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        <product-quantity [cartItem]="item"></product-quantity>
+      </mat-cell>
+    </ng-container>
+
+  <!-- column: product unit price -->
   <ng-container matColumnDef="unitPrice">
     <mat-header-cell *matHeaderCellDef>Unit Price</mat-header-cell>
     <mat-cell *matCellDef="let item">

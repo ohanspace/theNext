@@ -19,6 +19,7 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './shared/product-card/product-card.component';
 import { ShoppingCartService } from './service/shopping-cart.service';
+import { ProductQuantityComponent } from './shared/product-quantity/product-quantity.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { ShoppingCartService } from './service/shopping-cart.service';
     MatNavbarComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductQuantityComponent
   ],
   providers: [ CategoryService, ProductService, ShoppingCartService ]
 })

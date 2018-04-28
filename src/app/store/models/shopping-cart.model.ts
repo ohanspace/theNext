@@ -13,6 +13,10 @@ export class ShoppingCart {
         }
     }
 
+    getItem(productId: string): ShoppingCartItem {
+        return this.itemsMap[productId];
+    }
+
     get totalItemsQuantity(): number {
         let totalQuantity = 0;
         if (!this.itemsMap) return totalQuantity;
