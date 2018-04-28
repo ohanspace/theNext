@@ -69,6 +69,21 @@ export class ShoppingCartService {
 
   }
 
+  async getItemsArray(): Promise<Observable<ShoppingCartItem[]>> {
+    const items$ = await this.getItemsRef();
+    return items$.snapshotChanges()
+      .map(changes => {
+        return changes.map(c => 
+          ({id: c.payload.key, ...c.payload.val()}));
+      }
+    );
+  }
+
+  private async getItemsRef() {
+    const cartId = await this.getOrCreateCartId();
+    return this.afDb.list<ShoppingCartItem[]>('/shopping-carts/' + cartId + '/items');
+  }
+
   async getCart() {
     const cartId = await this.getOrCreateCartId();
     return this.afDb.object<ShoppingCart>('/shopping-carts/' + cartId)

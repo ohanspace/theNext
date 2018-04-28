@@ -4,17 +4,26 @@ export class ShoppingCart {
     id?: string;
 
     constructor(public dateCreated, 
-                public items?: ShoppingCartItem[]) {
+                public itemsMap?: { [key: string]: ShoppingCartItem }) {
 
     }
 
-    get totalItemsQuantity() {
+    get totalItemsQuantity(): number {
         let totalQuantity = 0;
-        if (!this.items) return totalQuantity;
+        if (!this.itemsMap) return totalQuantity;
 
-        for (const productId of Object.keys(this.items)) {
-          totalQuantity += this.items[productId].quantity;
+        for (const productId of Object.keys(this.itemsMap)) {
+          totalQuantity += this.itemsMap[productId].quantity;
         } 
         return totalQuantity;
+    }
+
+    get itemsArray(): ShoppingCartItem[] {
+        if (!this.itemsMap) return [];
+        const itemsArray = [];
+        for (const id of Object.keys(this.itemsMap)) {
+            itemsArray.push(this.itemsMap[id]);
+        }
+        return itemsArray;
     }
 }

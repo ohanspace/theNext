@@ -1,3 +1,23 @@
-<p>
-  shopping-cart works!
-</p>
+<h1>Shopping Cart</h1>
+
+<p>You have {{getTotalItemsQty()}} items in your shopping cart</p>
+
+<mat-table #table [dataSource]="itemsDataSource">
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+  <!-- column: product name -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Product Name</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{item.product.name}}</mat-cell>
+  </ng-container>
+
+  <!-- column: product qunatity -->
+  <ng-container matColumnDef="quantity">
+    <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{item.quantity}}</mat-cell>
+  </ng-container>
+
+
+</mat-table> 
