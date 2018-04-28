@@ -17,12 +17,6 @@ export class ShoppingCartService {
   constructor(private afDb: AngularFireDatabase) {
   }
 
-  async getItemQuantity(product: Product) {
-    const item$ = await this.getCartItemRef(product.id);
-    return item$.valueChanges().map(item => {
-      return item.quantity;
-    });
-  }
 
   async addToCart(product: Product) {
     this.changeItemQuantity(product, 1);
@@ -69,16 +63,6 @@ export class ShoppingCartService {
 
   }
 
-  async getItemsArray(): Promise<Observable<ShoppingCartItem[]>> {
-    const items$ = await this.getItemsRef();
-    return items$.snapshotChanges()
-      .map(changes => {
-        return changes.map(c => 
-          ({id: c.payload.key, ...c.payload.val()}));
-      }
-    );
-  }
-
   private async getItemsRef() {
     const cartId = await this.getOrCreateCartId();
     return this.afDb.list<ShoppingCartItem[]>('/shopping-carts/' + cartId + '/items');
@@ -88,8 +72,9 @@ export class ShoppingCartService {
     const cartId = await this.getOrCreateCartId();
     return this.afDb.object<ShoppingCart>('/shopping-carts/' + cartId)
             .valueChanges()
-            .map(cart => 
-                new ShoppingCart(cart.dateCreated, cart.items)
+            .map(cart => {
+                 return  new ShoppingCart(cart.dateCreated, cart.items);
+                }
             );
   }
 

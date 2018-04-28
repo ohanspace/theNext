@@ -19,5 +19,24 @@
     <mat-cell *matCellDef="let item">{{item.quantity}}</mat-cell>
   </ng-container>
 
+  <!-- column: product total price -->
+  <ng-container matColumnDef="unitPrice">
+    <mat-header-cell *matHeaderCellDef>Unit Price</mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      {{item.getUnitPrice() | currency:'BDT' }}
+    </mat-cell>
+  </ng-container>
+
+
+   <!-- column: product total price -->
+   <ng-container matColumnDef="totalPrice">
+    <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      {{item.getTotalPrice() | currency:'BDT'}}
+    </mat-cell>
+  </ng-container>
 
 </mat-table> 
+<p>
+    Total price {{getTotalPrice() | currency:'BDT'}}
+</p>

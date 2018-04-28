@@ -12,7 +12,7 @@ import { ShoppingCartItem } from '../models/shopping-cart-item.model';
 export class ShoppingCartComponent implements OnInit {
   cart: ShoppingCart;
   itemsDataSource = new MatTableDataSource<ShoppingCartItem>();
-  displayedColumns = ['name', 'quantity'];
+  displayedColumns = ['name', 'quantity', 'unitPrice', 'totalPrice'];
 
   constructor(private cartService: ShoppingCartService) { }
 
@@ -21,12 +21,15 @@ export class ShoppingCartComponent implements OnInit {
     cart$.subscribe(c => {
       this.cart = c;
       this.itemsDataSource.data = c.itemsArray;
-      console.log(c.itemsArray);
     });
   }
 
   getTotalItemsQty() {
     return this.cart ? this.cart.totalItemsQuantity : 0;
+  }
+
+  getTotalPrice() {
+    return this.cart ? this.cart.totalPrice : 0;
   }
 
 }

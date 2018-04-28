@@ -2,10 +2,15 @@ import { ShoppingCartItem } from './shopping-cart-item.model';
 
 export class ShoppingCart {
     id?: string;
+    items: ShoppingCartItem[] = [];
 
     constructor(public dateCreated, 
-                public itemsMap?: { [key: string]: ShoppingCartItem }) {
-
+                public itemsMap:  ShoppingCartItem[] ) {
+        for (const id of Object.keys(itemsMap)) {
+            const item = itemsMap[id];
+            const itemObj = new ShoppingCartItem(item.product, item.quantity);
+            this.items.push(itemObj);
+        }
     }
 
     get totalItemsQuantity(): number {
@@ -19,11 +24,14 @@ export class ShoppingCart {
     }
 
     get itemsArray(): ShoppingCartItem[] {
-        if (!this.itemsMap) return [];
-        const itemsArray = [];
-        for (const id of Object.keys(this.itemsMap)) {
-            itemsArray.push(this.itemsMap[id]);
+        return this.items;
+    }
+
+    get totalPrice(): number {
+        let total = 0;
+        for (const item of this.items) {
+            total += item.getTotalPrice();
         }
-        return itemsArray;
+        return total;
     }
 }
