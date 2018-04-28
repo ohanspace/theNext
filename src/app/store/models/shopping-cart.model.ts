@@ -1,7 +1,20 @@
 import { ShoppingCartItem } from './shopping-cart-item.model';
 
-export interface ShoppingCart {
+export class ShoppingCart {
     id?: string;
-    items?: ShoppingCartItem[];
-    dateCreated: number;
+
+    constructor(public dateCreated, 
+                public items?: ShoppingCartItem[]) {
+
+    }
+
+    get totalItemsQuantity() {
+        let totalQuantity = 0;
+        if (!this.items) return totalQuantity;
+
+        for (const productId of Object.keys(this.items)) {
+          totalQuantity += this.items[productId].quantity;
+        } 
+        return totalQuantity;
+    }
 }

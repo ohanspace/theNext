@@ -21,8 +21,11 @@ export class MatNavbarComponent implements OnInit {
     
     
   async ngOnInit() {
-    const totalItemsInCart$ = await this.cartService.getTotalQuantity();
-    totalItemsInCart$.subscribe(total => this.totalItemsInCart = total);
+    const cart$ = await this.cartService.getCart();
+    cart$.subscribe(cart => {
+        this.totalItemsInCart = cart.totalItemsQuantity;
+      }
+    );
   }
 
   logout() {

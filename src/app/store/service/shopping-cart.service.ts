@@ -87,8 +87,11 @@ export class ShoppingCartService {
   async getCart() {
     const cartId = await this.getOrCreateCartId();
     return <Observable<ShoppingCart>>
-            this.afDb.object('/shopping-carts/' + cartId)
-            .valueChanges();
+            this.afDb.object<ShoppingCart>('/shopping-carts/' + cartId)
+            .valueChanges()
+            .map(cart => 
+                new ShoppingCart(cart.dateCreated, cart.items)
+            );
   }
 
 
