@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { ShoppingCart } from '../models/shopping-cart.model';
-import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/take';
 import { Subscriber } from 'rxjs/Subscriber';
 import { ShoppingCartItem } from '../models/shopping-cart-item.model';
@@ -22,20 +21,6 @@ export class ShoppingCartService {
     const item$ = await this.getCartItemRef(product.id);
     return item$.valueChanges().map(item => {
       return item.quantity;
-    });
-  }
-
-
-  async getTotalQuantity() {
-    const cart$ = await this.getCart();
-    return cart$.map(cart => {
-        let totalQuantity = 0;
-        if (!cart.items) return totalQuantity;
-
-        for (const productId of Object.keys(cart.items)) {
-          totalQuantity += cart.items[productId].quantity;
-        } 
-        return totalQuantity;
     });
   }
 
@@ -70,10 +55,10 @@ export class ShoppingCartService {
 
   async getCartItem( productId: string) {
       const cartId = await this.getOrCreateCartId();
-      return this.afDb.object('/shopping-carts/'
+      return this.afDb.object<ShoppingCartItem>('/shopping-carts/'
              + cartId + '/items/' + productId)
              .snapshotChanges()
-             .map(item => <ShoppingCartItem> item.payload.val());
+             .map(item => item.payload.val());
   }
 
   private createCart() {
@@ -86,8 +71,7 @@ export class ShoppingCartService {
 
   async getCart() {
     const cartId = await this.getOrCreateCartId();
-    return <Observable<ShoppingCart>>
-            this.afDb.object<ShoppingCart>('/shopping-carts/' + cartId)
+    return this.afDb.object<ShoppingCart>('/shopping-carts/' + cartId)
             .valueChanges()
             .map(cart => 
                 new ShoppingCart(cart.dateCreated, cart.items)
