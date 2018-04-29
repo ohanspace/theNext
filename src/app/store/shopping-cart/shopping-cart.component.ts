@@ -10,7 +10,7 @@ import { ShoppingCartItem } from '../models/shopping-cart-item.model';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  cart: ShoppingCart;
+  shoppingCart: ShoppingCart;
   itemsDataSource = new MatTableDataSource<ShoppingCartItem>();
   displayedColumns = ['name', 'changeQuantity', 'unitPrice', 'totalPrice'];
 
@@ -19,17 +19,17 @@ export class ShoppingCartComponent implements OnInit {
   async ngOnInit() {
     const cart$ = await this.cartService.getCart();
     cart$.subscribe(c => {
-      this.cart = c;
+      this.shoppingCart = c;
       this.itemsDataSource.data = c.itemsArray;
     });
   }
 
   getTotalItemsQty() {
-    return this.cart ? this.cart.totalItemsQuantity : 0;
+    return this.shoppingCart ? this.shoppingCart.totalItemsQuantity : 0;
   }
 
   getTotalPrice() {
-    return this.cart ? this.cart.totalPrice : 0;
+    return this.shoppingCart ? this.shoppingCart.totalPrice : 0;
   }
 
 }

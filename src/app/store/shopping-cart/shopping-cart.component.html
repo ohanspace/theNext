@@ -18,7 +18,7 @@
   <ng-container matColumnDef="changeQuantity">
       <mat-header-cell *matHeaderCellDef>Change Quantity</mat-header-cell>
       <mat-cell *matCellDef="let item">
-        <product-quantity [cartItem]="item"></product-quantity>
+        <product-quantity [product]="item.product" [shoppingCart]="shoppingCart"></product-quantity>
       </mat-cell>
     </ng-container>
 
