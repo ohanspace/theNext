@@ -10,18 +10,13 @@ export class ShoppingCart {
                 itemsMap ) {
         if (!itemsMap) return;
         this.itemsMap = itemsMap;
-        for (const id of Object.keys(itemsMap)) {
-            const item = itemsMap[id];
+        for (const id of Object.keys(this.itemsMap)) {
+            const item = this.itemsMap[id];
             const itemObj = new ShoppingCartItem(item.product, item.quantity);
             this.items.push(itemObj);
         }
     }
-
-    getItem(productId: string): ShoppingCartItem {
-        const item = this.itemsMap[productId];
-        return item ? item : null;
-    }
-
+    
     getQtyOfProduct(product: Product) {
         const item = this.itemsMap[product.id];
         return item ? item.quantity : 0;

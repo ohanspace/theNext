@@ -21,6 +21,7 @@ export class ShoppingCartComponent implements OnInit {
     cart$.subscribe(c => {
       this.shoppingCart = c;
       this.itemsDataSource.data = c.itemsArray;
+      console.log(c.itemsArray);
     });
   }
 
