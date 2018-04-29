@@ -23,7 +23,8 @@
     <!-- add to cart  button -->
     <mat-card-actions *ngIf="showActions">
       <product-quantity 
-        [cartItem]="shoppingCart?.getItem(product.id)">
+        [product]="product"
+        [shoppingCart]="shoppingCart">
       </product-quantity>
     </mat-card-actions>
 </mat-card>

@@ -72,10 +72,7 @@ export class ShoppingCartService {
     const cartId = await this.getOrCreateCartId();
     return this.afDb.object<ShoppingCart>('/shopping-carts/' + cartId)
             .valueChanges()
-            .map(cart => {
-                 return  new ShoppingCart(cart.dateCreated, cart.items);
-                }
-            );
+            .map(cart => new ShoppingCart(cart.dateCreated, cart.items));
   }
 
 
