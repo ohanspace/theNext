@@ -1,6 +1,6 @@
 import { Product } from './../../models/product.model';
 import { ShoppingCartItem } from './../../models/shopping-cart-item.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ShoppingCartService } from '../../service/shopping-cart.service';
 import { ShoppingCart } from '../../models/shopping-cart.model';
 import * as _ from 'lodash';
@@ -10,15 +10,12 @@ import * as _ from 'lodash';
   templateUrl: './product-quantity.component.html',
   styleUrls: ['./product-quantity.component.css']
 })
-export class ProductQuantityComponent implements OnInit {
-  @Input() cartItem: ShoppingCartItem;
+export class ProductQuantityComponent {
+
   @Input() product = {} as Product;
   @Input() shoppingCart = {} as ShoppingCart;
 
   constructor(private cartService: ShoppingCartService) { }
-
-  ngOnInit() {
-  }
 
 
   addToCart() {
@@ -29,10 +26,10 @@ export class ProductQuantityComponent implements OnInit {
     this.cartService.removeFromCart(this.product);
   }
 
-  getQuantity() {
+  get quantity() {
     if (! _.isEmpty(this.shoppingCart))
       return this.shoppingCart.getQtyOfProduct(this.product);
-    else return 0;
+    return 0;
   }
 
 }

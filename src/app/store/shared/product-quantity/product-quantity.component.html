@@ -1,5 +1,5 @@
 <button mat-raised-button
-        *ngIf="getQuantity() === 0; else updateQuantity"
+        *ngIf="quantity === 0; else updateQuantity"
         color="primary" 
         style="width:100%"
         (click)="addToCart()">
@@ -14,7 +14,7 @@
             color="primary">
       <mat-icon>remove</mat-icon>
     </button>
-    <mat-chip color="primary">{{getQuantity()}}</mat-chip>
+    <mat-chip color="primary">{{quantity}}</mat-chip>
     <!-- decrease item quantity -->
     <button mat-button 
             (click)="addToCart()"
