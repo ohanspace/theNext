@@ -3,22 +3,20 @@ import { Product } from './product.model';
 export class ShoppingCartItem {
     id?: string;
     product: Product;
+    name: string;
+    imageUrl: string;
+    price: number;
     quantity: number;
 
-    constructor(product: Product, quantity: number) {
-        this.product = product;
-        this.quantity = quantity;
-    }
-
-    setId(productId: string) {
-        this.id = productId;
+    constructor(params: Partial<ShoppingCartItem>) {
+        Object.assign(this, params);
     }
 
     getUnitPrice() {
-        return this.product.price;
+        return this.price;
     }
     
     getTotalPrice() {
-        return this.product.price * this.quantity;
+        return this.price * this.quantity;
     }
 }

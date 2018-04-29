@@ -10,7 +10,7 @@
   <!-- column: product name -->
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Product Name</mat-header-cell>
-    <mat-cell *matCellDef="let item">{{item.product.name}}</mat-cell>
+    <mat-cell *matCellDef="let item">{{item.name}}</mat-cell>
   </ng-container>
 
 
@@ -18,7 +18,7 @@
   <ng-container matColumnDef="changeQuantity">
       <mat-header-cell *matHeaderCellDef>Change Quantity</mat-header-cell>
       <mat-cell *matCellDef="let item">
-        <product-quantity [product]="item.product" [shoppingCart]="shoppingCart"></product-quantity>
+        <product-quantity [product]="item" [shoppingCart]="shoppingCart"></product-quantity>
       </mat-cell>
     </ng-container>
 

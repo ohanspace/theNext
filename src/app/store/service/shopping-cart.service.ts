@@ -33,10 +33,19 @@ export class ShoppingCartService {
      item$.valueChanges()
        .take(1)
        .subscribe(item => {
-               item$.update({
-                 product: product,
-                 quantity:  (item ? item.quantity : 0) + changeValue
-               });
+          const updatedQty = (item ? item.quantity : 0 ) + changeValue;
+          
+          if (updatedQty <= 0) 
+            item$.remove();
+          else {
+            item$.update({
+              name: product.name,
+              price: product.price,
+              imageUrl: product.imageUrl,
+              quantity: updatedQty
+            });
+          } 
+              
        });
   }
 
