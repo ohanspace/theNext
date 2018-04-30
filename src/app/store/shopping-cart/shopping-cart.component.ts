@@ -25,12 +25,16 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
-  getTotalItemsQty() {
+  get totalItemsQty() {
     return this.shoppingCart ? this.shoppingCart.totalItemsQuantity : 0;
   }
 
-  getTotalPrice() {
+  get totalPrice() {
     return this.shoppingCart ? this.shoppingCart.totalPrice : 0;
+  }
+
+  clearCart() {
+    this.cartService.clearCart();
   }
 
 }

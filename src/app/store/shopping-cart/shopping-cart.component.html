@@ -1,6 +1,6 @@
 <h1>Shopping Cart</h1>
 
-<p>You have {{getTotalItemsQty()}} items in your shopping cart</p>
+<p>You have {{totalItemsQty}} items in your shopping cart</p>
 
 <mat-table #table [dataSource]="itemsDataSource">
 
@@ -41,5 +41,12 @@
 
 </mat-table> 
 <p>
-    Total price {{getTotalPrice() | currency:'BDT'}}
+    Total price {{totalPrice | currency:'BDT'}}
 </p>
+<div *ngIf="totalItemsQty != 0">
+  <button mat-button 
+          (click)="clearCart()"
+          color="warn">
+    Clear Cart
+  </button>
+</div>
