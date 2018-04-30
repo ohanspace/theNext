@@ -12,7 +12,7 @@ import { ShoppingCartItem } from '../models/shopping-cart-item.model';
 export class ShoppingCartComponent implements OnInit {
   shoppingCart: ShoppingCart;
   itemsDataSource = new MatTableDataSource<ShoppingCartItem>();
-  displayedColumns = ['name', 'changeQuantity', 'unitPrice', 'totalPrice'];
+  displayedColumns = ['image', 'name', 'changeQuantity', 'unitPrice', 'totalPrice'];
 
   constructor(private cartService: ShoppingCartService) { }
 

@@ -7,6 +7,14 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   
+   <!-- column: product thumbnail image -->
+   <ng-container matColumnDef="image">
+    <mat-header-cell *matHeaderCellDef>image</mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      <div class="thumbnail" [style.backgroundImage]="'url(' + item.imageUrl + ')'"></div>
+    </mat-cell>
+  </ng-container>
+
   <!-- column: product name -->
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Product Name</mat-header-cell>
