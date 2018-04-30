@@ -8,14 +8,16 @@
       <mat-icon>menu</mat-icon>
     </button>
     
-    <mat-grid-list cols="3" rowHeight="1:2">
-      <mat-grid-tile *ngFor="let product of filteredProducts">
+    <div fxLayout="row wrap" fxLayoutAlign="space-around"  
+         fxLayout.xs="column" fxLayoutAlign.xs="center"
+         fxLayoutGap="25px">
+      <div *ngFor="let product of filteredProducts" >
         <product-card 
           [product]="product"
           [shoppingCart]="shoppingCart">
         </product-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+      </div>
+    </div>
   </mat-sidenav-content>
 
 </mat-sidenav-container>

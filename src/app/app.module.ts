@@ -10,6 +10,7 @@ import {RouterModule} from '@angular/router';
 import { AppConfigService } from './app-config.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CustomMaterialModule } from './custom-material/custom-material.module';
     RouterModule,
     AppRoutingModule,
     CustomMaterialModule,
+    FlexLayoutModule,
     CoreModule,
     NgbModule.forRoot(),
     AuthModule
