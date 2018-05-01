@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { ShoppingCartService } from './../service/shopping-cart.service';
 import { ShoppingCart } from './../models/shopping-cart.model';
 import { ActivatedRoute } from '@angular/router';
@@ -12,42 +13,38 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   selectedCategory: string;
-  shoppingCart = {} as ShoppingCart;
-  cartSubscription: Subscription;
+  shoppingCart$: Observable<ShoppingCart>;
 
   constructor(
       private route: ActivatedRoute,
       private productService: ProductService,
       private cartService: ShoppingCartService
-  ) { 
-
-    productService.getAll()
-      .subscribe(products => {
-        this.products = products;
-        
-        route.queryParamMap.subscribe(params => {
-          this.selectedCategory = params.get('category');
-          this.filteredProducts = (this.selectedCategory) ? 
-              this.products.filter(p => p.category === this.selectedCategory) 
-              : this.products;
-        });
-      });
-
-  }
+  ) {}
 
   async ngOnInit() { 
-    const cart$ = await this.cartService.getCart();
-    this.cartSubscription = cart$.subscribe(cart => {
-      this.shoppingCart = cart;
+    this.shoppingCart$ = await this.cartService.getCart();
+    this.populateProducts();
+  }
+
+  private populateProducts() {
+    this.productService.getAll()
+      .subscribe(products => {
+        this.products = products;
+        this.applyFilter();
     });
   }
 
-  ngOnDestroy() {
-    this.cartSubscription.unsubscribe();
+  private applyFilter() {
+    this.route.queryParamMap.subscribe(params => {
+      this.selectedCategory = params.get('category');
+      this.filteredProducts = (this.selectedCategory) ? 
+          this.products.filter(p => p.category === this.selectedCategory) 
+          : this.products;
+    });
   }
 
 }
