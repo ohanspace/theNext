@@ -42,7 +42,7 @@ export class ShoppingCart {
     get totalPrice(): number {
         let total = 0;
         for (const item of this.items) {
-            total += item.getTotalPrice();
+            total += item.totalPrice;
         }
         return total;
     }

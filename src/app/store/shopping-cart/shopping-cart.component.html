@@ -43,7 +43,7 @@
    <ng-container matColumnDef="totalPrice">
     <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
     <mat-cell *matCellDef="let item">
-      {{item.getTotalPrice() | currency:'BDT'}}
+      {{item.totalPrice | currency:'BDT'}}
     </mat-cell>
   </ng-container>
 
@@ -52,6 +52,11 @@
     Total price {{totalPrice | currency:'BDT'}}
 </p>
 <div *ngIf="totalItemsQty != 0">
+  <a mat-raised-button
+    color="primary"
+    routerLink="/store/check-out">
+    Check Out
+  </a>
   <button mat-button 
           (click)="clearCart()"
           color="warn">

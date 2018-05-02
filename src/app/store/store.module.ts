@@ -1,4 +1,5 @@
 import { ProductService } from './service/product.service';
+import { OrderService } from './service/order.service';
 import { SharedModule } from './../shared/shared.module';
 import { CategoryService } from './service/category.service';
 import { CustomMaterialModule } from './../custom-material/custom-material.module';
@@ -20,6 +21,8 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from './shared/product-card/product-card.component';
 import { ShoppingCartService } from './service/shopping-cart.service';
 import { ProductQuantityComponent } from './shared/product-quantity/product-quantity.component';
+import { ShippingFormComponent } from './check-out/shipping-form/shipping-form.component';
+import { ShoppingCartSummaryComponent } from './check-out/shopping-cart-summary/shopping-cart-summary.component';
 
 @NgModule({
   imports: [
@@ -42,8 +45,15 @@ import { ProductQuantityComponent } from './shared/product-quantity/product-quan
     ProductFormComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    ShippingFormComponent,
+    ShoppingCartSummaryComponent
   ],
-  providers: [ CategoryService, ProductService, ShoppingCartService ]
+  providers: [ 
+    CategoryService, 
+    ProductService, 
+    ShoppingCartService,
+    OrderService
+  ]
 })
 export class StoreModule { }

@@ -1,0 +1,38 @@
+<h2>Shipping Address</h2>
+<form #f="ngForm" fxLayout="column">
+  <!-- name -->
+  <mat-form-field>
+    <input matInput
+          name="name" 
+          [(ngModel)] = "shippingAddress.name"
+          placeholder="Recipient Name"
+          required>
+  </mat-form-field>
+
+  <!-- address -->
+  <mat-form-field>
+    <textarea matInput
+          name="address"
+          [(ngModel)] = "shippingAddress.address"
+          placeholder="Full Address"
+          required>
+    </textarea>
+  </mat-form-field>
+
+  <!-- telephone -->
+  <mat-form-field>
+    <input matInput type="tel"
+          name="telephone"
+          [(ngModel)] = "shippingAddress.telephone"
+          placeholder="Telephone"
+          required>
+  </mat-form-field>
+
+  <!-- place order -->
+  <button mat-raised-button
+          color="primary"
+          (click) = "placeOrder()"
+          [disabled]="f.form.invalid">
+    Place Order
+  </button>
+</form>
