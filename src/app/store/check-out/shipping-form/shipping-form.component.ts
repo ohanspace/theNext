@@ -15,24 +15,29 @@ import { OrderService } from '../../service/order.service';
 })
 export class ShippingFormComponent implements OnInit, OnDestroy {
   @Input('shoppingCart') shoppingCart: ShoppingCart;
-  
+
   shippingAddress = {} as ShippingAddress;
   userId: string;
   userSubscription: Subscription;
 
-  constructor(private router: Router,
-              private authService: AuthService,
-              private orderService: OrderService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private orderService: OrderService
+  ) {}
 
   async ngOnInit() {
-
-
-    this.userSubscription = this.authService
-            .authState$.subscribe(auth => this.userId = auth.uid);
+    this.userSubscription = this.authService.authState$.subscribe(
+      auth => (this.userId = auth.uid)
+    );
   }
 
   async placeOrder() {
-    const order: Order = new Order(this.userId, this.shippingAddress, this.shoppingCart.items);
+    const order: Order = new Order(
+      this.userId,
+      this.shippingAddress,
+      this.shoppingCart.items
+    );
 
     const orderId = await this.orderService.placeOrder(order);
     this.router.navigate(['/store/order-success', orderId]);
@@ -41,5 +46,4 @@ export class ShippingFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
   }
-
 }

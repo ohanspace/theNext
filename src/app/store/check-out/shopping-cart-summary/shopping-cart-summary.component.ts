@@ -9,6 +9,5 @@ import { ShoppingCart } from '../../models/shopping-cart.model';
 export class ShoppingCartSummaryComponent {
   @Input('shoppingCart') cart: ShoppingCart;
 
-  constructor() { }
-
+  constructor() {}
 }
