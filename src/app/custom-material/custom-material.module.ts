@@ -17,6 +17,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSortModule,
     MatSidenavModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
   exports: [
     MatCheckboxModule,
@@ -55,8 +57,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSortModule,
     MatSidenavModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
   declarations: []
 })
-export class CustomMaterialModule { }
+export class CustomMaterialModule {}

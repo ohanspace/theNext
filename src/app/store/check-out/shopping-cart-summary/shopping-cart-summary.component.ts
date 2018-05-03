@@ -7,7 +7,7 @@ import { ShoppingCart } from '../../models/shopping-cart.model';
   styleUrls: ['./shopping-cart-summary.component.css']
 })
 export class ShoppingCartSummaryComponent {
-  @Input('shoppingCart') cart: ShoppingCart;
+  @Input('shoppingCart') cart = {} as ShoppingCart;
 
   constructor() {}
 }

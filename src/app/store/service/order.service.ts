@@ -6,17 +6,36 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 export class OrderService {
-
-  constructor(private afDb: AngularFireDatabase, 
-      private cartService: ShoppingCartService) { }
+  constructor(
+    private afDb: AngularFireDatabase,
+    private cartService: ShoppingCartService
+  ) {}
 
   async placeOrder(order: Order) {
-    const orderId = await this.afDb.list('/orders').push(order)
-          .then(res => res.key); // id of newly saved order
-          
+    const orderId = await this.afDb
+      .list('/orders')
+      .push(order)
+      .then(res => res.key); // id of newly saved order
+
     this.cartService.clearCart();
     return orderId;
-
   }
 
+  getAll(): Observable<Order[]> {
+    return this.afDb
+      .list('/orders')
+      .snapshotChanges()
+      .map(orders =>
+        orders.map(order => ({ id: order.key, ...order.payload.val() }))
+      );
+  }
+
+  getByUserId(userId: string): Observable<Order[]> {
+    return this.afDb
+      .list('/orders', ref => ref.orderByChild('userId').equalTo(userId))
+      .snapshotChanges()
+      .map(orders =>
+        orders.map(order => ({ id: order.key, ...order.payload.val() }))
+      );
+  }
 }

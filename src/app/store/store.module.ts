@@ -23,6 +23,7 @@ import { ShoppingCartService } from './service/shopping-cart.service';
 import { ProductQuantityComponent } from './shared/product-quantity/product-quantity.component';
 import { ShippingFormComponent } from './check-out/shipping-form/shipping-form.component';
 import { ShoppingCartSummaryComponent } from './check-out/shopping-cart-summary/shopping-cart-summary.component';
+import { OrderDetailDialogComponent } from './shared/order-detail-dialog/order-detail-dialog.component';
 
 @NgModule({
   imports: [
@@ -47,13 +48,15 @@ import { ShoppingCartSummaryComponent } from './check-out/shopping-cart-summary/
     ProductCardComponent,
     ProductQuantityComponent,
     ShippingFormComponent,
-    ShoppingCartSummaryComponent
+    ShoppingCartSummaryComponent,
+    OrderDetailDialogComponent
   ],
-  providers: [ 
-    CategoryService, 
-    ProductService, 
+  entryComponents: [OrderDetailDialogComponent],
+  providers: [
+    CategoryService,
+    ProductService,
     ShoppingCartService,
     OrderService
   ]
 })
-export class StoreModule { }
+export class StoreModule {}
