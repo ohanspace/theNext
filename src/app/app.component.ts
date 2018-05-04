@@ -11,21 +11,21 @@ import { AppConfigService } from './app-config.service';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private router: Router, 
-    private configService: AppConfigService, 
+    private router: Router,
+    private configService: AppConfigService,
     private userService: UserService,
-    private authService: AuthService) {
-
-      authService.authState$.subscribe(user => {
-        if (user) {
-          userService.save(user);
-          const returnUrl = localStorage.getItem('returnUrl');
-          if (returnUrl) {
-            localStorage.removeItem('returnUrl');
-            router.navigateByUrl(returnUrl);
-          }
+    private authService: AuthService
+  ) {
+    authService.authState$.subscribe(user => {
+      if (user) {
+        userService.save(user);
+        const returnUrl = localStorage.getItem('returnUrl');
+        if (returnUrl) {
+          localStorage.removeItem('returnUrl');
+          router.navigateByUrl(returnUrl);
         }
-      });
+      }
+    });
   }
   ngOnInit(): void {
     console.log('app component init');
@@ -33,11 +33,11 @@ export class AppComponent implements OnInit {
   }
 
   loadModule() {
-    this.configService.getRouteConfig().subscribe((configs) => {
+    this.configService.getRouteConfig().subscribe(configs => {
       const conf = [];
       conf.push(configs, ...this.router.config);
       this.router.resetConfig(conf);
+      console.log(this.router.config);
     });
   }
-
 }
