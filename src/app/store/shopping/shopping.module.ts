@@ -1,5 +1,5 @@
-import { AuthGuard } from './../../auth/auth-guard.service';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CheckOutComponent } from 'app/store/shopping/components/check-out/check-out.component';
 import { ShippingFormComponent } from 'app/store/shopping/components/check-out/shipping-form/shipping-form.component';
 import { ShoppingCartSummaryComponent } from 'app/store/shopping/components/check-out/shopping-cart-summary/shopping-cart-summary.component';
@@ -10,7 +10,7 @@ import { ProductsComponent } from 'app/store/shopping/components/products/produc
 import { ShoppingCartComponent } from 'app/store/shopping/components/shopping-cart/shopping-cart.component';
 
 import { SharedModule } from '../shared/shared.module';
-import { RouterModule } from '@angular/router';
+import { AuthGuard } from './../../auth/auth-guard.service';
 
 @NgModule({
   imports: [

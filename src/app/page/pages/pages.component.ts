@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Page} from '../models/Page';
-import {PageService} from '../services/page.service';
-import {ToastrService} from 'ngx-toastr';
+import { Page } from '../models/Page';
+import { PageService } from '../services/page.service';
 
 @Component({
   selector: 'app-pages',
@@ -9,19 +8,16 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent implements OnInit {
-
   pages: Page[];
-  constructor(private pageService: PageService, private toastr: ToastrService) { }
+  constructor(private pageService: PageService) {}
 
   ngOnInit() {
-      this.getPages();
+    this.getPages();
   }
 
   getPages(): void {
-      this.pageService.getPages().subscribe(pages => {
-          this.pages = pages;
-          setTimeout(() => this.toastr.success('Pages loaded', 'hello'));
-
-      });
+    this.pageService.getPages().subscribe(pages => {
+      this.pages = pages;
+    });
   }
 }
