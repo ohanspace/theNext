@@ -1,7 +1,14 @@
 import { UserService } from './auth/user/user.service';
 import { AuthService } from './auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Router,
+  RouterEvent,
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancel,
+  NavigationError
+} from '@angular/router';
 import { AppConfigService } from './app-config.service';
 
 @Component({
@@ -10,6 +17,8 @@ import { AppConfigService } from './app-config.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  loadingSpinner = false;
+
   constructor(
     private router: Router,
     private configService: AppConfigService,
@@ -19,25 +28,54 @@ export class AppComponent implements OnInit {
     authService.authState$.subscribe(user => {
       if (user) {
         userService.save(user);
-        const returnUrl = localStorage.getItem('returnUrl');
-        if (returnUrl) {
-          localStorage.removeItem('returnUrl');
-          router.navigateByUrl(returnUrl);
-        }
+        this.handleReturnUrl();
       }
     });
   }
+
   ngOnInit(): void {
-    console.log('app component init');
     this.loadModule();
+
+    this.setupLoadingSpinner();
   }
 
-  loadModule() {
+  private handleReturnUrl() {
+    const returnUrl = localStorage.getItem('returnUrl');
+    if (returnUrl) {
+      localStorage.removeItem('returnUrl');
+      this.router.navigateByUrl(returnUrl);
+    }
+  }
+
+  private loadModule() {
     this.configService.getRouteConfig().subscribe(configs => {
       const conf = [];
       conf.push(configs, ...this.router.config);
       this.router.resetConfig(conf);
       console.log(this.router.config);
     });
+  }
+
+  private setupLoadingSpinner() {
+    this.router.events.subscribe((event: RouterEvent) => {
+      if (event instanceof NavigationStart) {
+        this.loadingSpinnerOn();
+      }
+      if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError
+      ) {
+        this.loadingSpinnerOff();
+      }
+    });
+  }
+
+  private loadingSpinnerOn() {
+    this.loadingSpinner = true;
+  }
+
+  private loadingSpinnerOff() {
+    this.loadingSpinner = false;
   }
 }

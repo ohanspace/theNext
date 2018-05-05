@@ -31,11 +31,13 @@ export class ProductsComponent implements OnInit {
   }
 
   private populateProducts() {
-    this.productService.getAll()
-      .subscribe(products => {
-        this.products = products;
-        this.applyFilter();
-    });
+    this.products = this.route.snapshot.data['products'];
+    this.applyFilter();
+    // this.productService.getAll()
+    //   .subscribe(products => {
+    //     this.products = products;
+    //     this.applyFilter();
+    // });
   }
 
   private applyFilter() {

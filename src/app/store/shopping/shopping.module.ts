@@ -1,3 +1,4 @@
+import { ProductsResolver } from './../shared/resolvers/products.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CheckOutComponent } from 'app/store/shopping/components/check-out/check-out.component';
@@ -17,7 +18,11 @@ import { AuthGuard } from './../../auth/auth-guard.service';
     SharedModule,
     RouterModule.forChild([
       { path: '', redirectTo: 'products' },
-      { path: 'products', component: ProductsComponent },
+      {
+        path: 'products',
+        resolve: { products: ProductsResolver },
+        component: ProductsComponent
+      },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       {
         path: 'my-orders',

@@ -1,3 +1,4 @@
+import { ProductsResolver } from './resolvers/products.resolver';
 import { SharedModule as AppSharedModule } from './../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -28,7 +29,8 @@ import { CustomMaterialModule } from '../../custom-material/custom-material.modu
     CategoryService,
     ProductService,
     ShoppingCartService,
-    OrderService
+    OrderService,
+    ProductsResolver
   ],
   entryComponents: [OrderDetailDialogComponent]
 })
