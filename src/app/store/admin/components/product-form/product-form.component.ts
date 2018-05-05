@@ -14,31 +14,33 @@ import { Product } from '../../../shared/models/product.model';
 })
 export class ProductFormComponent implements OnInit {
   categories: Category[];
-  product = {};
+  product = {} as Product;
   productId;
-  constructor(private categoryService: CategoryService, 
-              private productService: ProductService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+  constructor(
+    private categoryService: CategoryService,
+    private productService: ProductService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    categoryService
+      .getAll()
+      .take(1)
+      .subscribe(categories => (this.categories = categories));
 
-    categoryService.getAll()
-        .take(1).subscribe(categories => this.categories = categories);
-    
     this.productId = activatedRoute.snapshot.paramMap.get('id');
     if (this.productId) {
-      productService.get(this.productId)
-        .take(1).subscribe(product => this.product = product);
+      productService
+        .get(this.productId)
+        .take(1)
+        .subscribe(product => (this.product = product));
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   save(product) {
-    if (this.productId)
-      this.productService.update(this.productId, product);
-    else 
-      this.productService.create(product);
+    if (this.productId) this.productService.update(this.productId, product);
+    else this.productService.create(product);
 
     this.navigateToProducts();
   }
@@ -53,5 +55,4 @@ export class ProductFormComponent implements OnInit {
   private navigateToProducts() {
     this.router.navigate(['/store/admin/products']);
   }
-
 }
