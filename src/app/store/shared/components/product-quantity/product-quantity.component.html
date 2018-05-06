@@ -1,26 +1,19 @@
-<button mat-raised-button
-        *ngIf="quantity === 0; else updateQuantity"
-        color="primary" 
-        style="width:100%"
-        (click)="addToCart()">
+<button mat-raised-button *ngIf="quantity === 0; else updateQuantity" color="primary" style="width:100%" (click)="addToCart()">
   Add to Cart
 </button>
 
 <ng-template #updateQuantity>
   <div fxLayout="row" fxLayoutAlign="center" style="border: 1px solid blue">
     <!-- increase item quantity -->
-    <button mat-button
-            (click)="removeFromCart()"
-            fxFlexAlign="start"
-            color="primary">
+    <button mat-button (click)="removeFromCart()" fxFlex="25" color="primary">
       <mat-icon>remove</mat-icon>
     </button>
-    <mat-chip color="primary" fxFlexAlign="center">{{quantity}}</mat-chip>
+    <div>
+
+      <span color="primary" fxFlex="50" style="text-align: center;">{{quantity}}</span>
+    </div>
     <!-- decrease item quantity -->
-    <button mat-button 
-            (click)="addToCart()"
-            fxFlexAlign="end"
-            color="primary"> 
+    <button mat-button (click)="addToCart()" fxFlex="25" color="primary">
       <mat-icon>add</mat-icon>
     </button>
   </div>
