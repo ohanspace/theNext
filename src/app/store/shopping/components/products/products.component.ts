@@ -17,15 +17,16 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   selectedCategory: string;
+  searchQuery: string;
   shoppingCart$: Observable<ShoppingCart>;
 
   constructor(
-      private route: ActivatedRoute,
-      private productService: ProductService,
-      private cartService: ShoppingCartService
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private cartService: ShoppingCartService
   ) {}
 
-  async ngOnInit() { 
+  async ngOnInit() {
     this.shoppingCart$ = await this.cartService.getCart();
     this.populateProducts();
   }
@@ -33,20 +34,29 @@ export class ProductsComponent implements OnInit {
   private populateProducts() {
     this.products = this.route.snapshot.data['products'];
     this.applyFilter();
-    // this.productService.getAll()
-    //   .subscribe(products => {
-    //     this.products = products;
-    //     this.applyFilter();
-    // });
   }
 
   private applyFilter() {
     this.route.queryParamMap.subscribe(params => {
       this.selectedCategory = params.get('category');
-      this.filteredProducts = (this.selectedCategory) ? 
-          this.products.filter(p => p.category === this.selectedCategory) 
-          : this.products;
+      this.searchQuery = params.get('searchQuery');
+
+      this.applyCategoryFilter();
+      this.applySearchQueryFilter();
     });
   }
 
+  private applyCategoryFilter() {
+    this.filteredProducts = this.selectedCategory
+      ? this.products.filter(p => p.category === this.selectedCategory)
+      : this.products;
+  }
+
+  private applySearchQueryFilter() {
+    if (this.searchQuery) {
+      this.filteredProducts = this.products.filter(
+        p => p.name.toLowerCase().indexOf(this.searchQuery.toLowerCase()) !== -1
+      );
+    }
+  }
 }

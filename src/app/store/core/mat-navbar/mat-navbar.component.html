@@ -1,20 +1,24 @@
-<mat-toolbar>
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
   <span routerLink="/store" class="clickable">eShop</span>
+
   <a mat-button routerLink="/store/shopping-cart">
     <span>Shopping Cart
-       <mat-chip>{{totalItemsInCart}}</mat-chip>
-    </span> 
-    <mat-icon>shopping_cart</mat-icon>    
+      <mat-chip>{{totalItemsInCart}}</mat-chip>
+    </span>
+    <mat-icon>shopping_cart</mat-icon>
   </a>
+
+  <!-- search input -->
+  <search-bar></search-bar>
 
   <ng-template #anonymousUser>
     <button mat-icon-button routerLink="/login">
-      <span>Login</span> 
+      <span>Login</span>
     </button>
   </ng-template>
-  
+
   <button *ngIf="user; else anonymousUser" mat-icon-button [matMenuTriggerFor]="menu" color="primary">
-    <span>{{user.displayName}}</span> 
+    <span>{{user.displayName}}</span>
     <mat-icon>arrow_drop_down</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
@@ -29,7 +33,7 @@
         <span>Manage Products</span>
       </a>
     </ng-container>
-      
+
     <a mat-menu-item>
       <span (click)="logout()">Logout</span>
     </a>
