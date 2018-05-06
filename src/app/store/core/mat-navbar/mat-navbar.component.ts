@@ -23,7 +23,6 @@ export class MatNavbarComponent implements OnInit {
     private cartService: ShoppingCartService
   ) {
     this.authService.user$.subscribe(user => (this.user = user));
-    console.log(this.router.isActive('/store/search', false));
   }
 
   async ngOnInit() {
@@ -31,12 +30,9 @@ export class MatNavbarComponent implements OnInit {
     cart$.subscribe(cart => {
       this.totalItemsInCart = cart.totalItemsQuantity;
     });
-
   }
 
   logout() {
     this.authService.logout();
   }
-
-  
 }

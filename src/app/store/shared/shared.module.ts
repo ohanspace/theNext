@@ -1,6 +1,3 @@
-import { ProductsResolver } from './resolvers/products.resolver';
-import { SharedModule as AppSharedModule } from './../../shared/shared.module';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { OrderDetailDialogComponent } from 'app/store/shared/components/order-detail-dialog/order-detail-dialog.component';
 import { ProductCardComponent } from 'app/store/shared/components/product-card/product-card.component';
@@ -10,7 +7,9 @@ import { OrderService } from 'app/store/shared/services/order.service';
 import { ProductService } from 'app/store/shared/services/product.service';
 import { ShoppingCartService } from 'app/store/shared/services/shopping-cart.service';
 
-import { CustomMaterialModule } from '../../custom-material/custom-material.module';
+import { SharedModule as AppSharedModule } from './../../shared/shared.module';
+import { LeavingFormEditGuard } from './guards/leaving-form-edit.guard';
+import { ProductsResolver } from './resolvers/products.resolver';
 
 @NgModule({
   imports: [AppSharedModule],
@@ -30,7 +29,8 @@ import { CustomMaterialModule } from '../../custom-material/custom-material.modu
     ProductService,
     ShoppingCartService,
     OrderService,
-    ProductsResolver
+    ProductsResolver,
+    LeavingFormEditGuard
   ],
   entryComponents: [OrderDetailDialogComponent]
 })
