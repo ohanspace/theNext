@@ -1,12 +1,10 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subscription } from 'rxjs';
 import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { ShoppingCart } from '../../../shared/models/shopping-cart.model';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from '../../../shared/models/product.model';
-import 'rxjs/add/operator/take';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-products',

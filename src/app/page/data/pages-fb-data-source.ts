@@ -1,5 +1,5 @@
 import {PagesDataSource} from './pages-data-source';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {Page} from '../models/Page';
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from 'angularfire2/firestore';

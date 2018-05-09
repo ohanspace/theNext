@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Page } from '../models/Page';
 import { PAGES } from '../../mocks/pages';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  of } from 'rxjs';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { PagesRepository } from '../data/pages-repository';
 

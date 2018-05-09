@@ -1,11 +1,11 @@
+
+import {take, map} from 'rxjs/operators';
 import { Product } from '../models/product.model';
 import { async } from '@angular/core/testing';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subscriber } from 'rxjs';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { ShoppingCart } from '../models/shopping-cart.model';
-import 'rxjs/add/operator/take';
-import { Subscriber } from 'rxjs/Subscriber';
 import { ShoppingCartItem } from '../models/shopping-cart-item.model';
 
 const TOKEN_SHOPPING_CART_ID = 'shopping-cart-id';
@@ -20,8 +20,8 @@ export class ShoppingCartService {
   async getCart() {
     const cartId = await this.getOrCreateCartId();
     return this.afDb.object<ShoppingCart>('/shopping-carts/' + cartId)
-            .valueChanges()
-            .map(cart => new ShoppingCart(cart.dateCreated, cart.items));
+            .valueChanges().pipe(
+            map(cart => new ShoppingCart(cart.dateCreated, cart.items)));
   }
   
   async addToCart(product: Product) {
@@ -41,8 +41,8 @@ export class ShoppingCartService {
     const cartId = await this.getOrCreateCartId();
     const item$ = await this.getCartItemRef(product.id);
      
-     item$.valueChanges()
-       .take(1)
+     item$.valueChanges().pipe(
+       take(1))
        .subscribe(item => {
           const updatedQty = (item ? item.quantity : 0 ) + changeValue;
 

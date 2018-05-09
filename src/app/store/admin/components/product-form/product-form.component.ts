@@ -1,10 +1,12 @@
+
+import {take} from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
 import { CategoryService } from '../../../shared/services/category.service';
 import { Category } from '../../../shared/models/category.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Validators, NgForm } from '@angular/forms';
-import 'rxjs/add/operator/take';
+
 import { Product } from '../../../shared/models/product.model';
 import { EditableFormComponent } from '../../../shared/interfaces/editable-form-component';
 
@@ -27,15 +29,15 @@ export class ProductFormComponent implements OnInit, EditableFormComponent {
     private activatedRoute: ActivatedRoute
   ) {
     categoryService
-      .getAll()
-      .take(1)
+      .getAll().pipe(
+      take(1))
       .subscribe(categories => (this.categories = categories));
 
     this.productId = activatedRoute.snapshot.paramMap.get('id');
     if (this.productId) {
       productService
-        .get(this.productId)
-        .take(1)
+        .get(this.productId).pipe(
+        take(1))
         .subscribe(product => (this.product = product));
     }
   }

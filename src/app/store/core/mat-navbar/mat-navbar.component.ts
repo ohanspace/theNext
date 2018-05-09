@@ -1,7 +1,7 @@
 import { RouterStateSnapshot, Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../../auth/user/user.model';
 import { AuthService } from '../../../auth/auth.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase/app';

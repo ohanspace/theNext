@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../../auth/auth.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ShoppingCart } from '../../../../shared/models/shopping-cart.model';
 import { ShoppingCartService } from '../../../../shared/services/shopping-cart.service';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';

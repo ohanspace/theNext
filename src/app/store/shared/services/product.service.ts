@@ -1,4 +1,6 @@
-import { Observable } from 'rxjs/Observable';
+
+import {map} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Product } from '../models/product.model';
 import { Injectable } from '@angular/core';
@@ -10,11 +12,11 @@ export class ProductService {
 
   getAll(): Observable<Product[]> {
     return  this.afDb.list('/products')
-      .snapshotChanges()
-      .map(items => 
+      .snapshotChanges().pipe(
+      map(items => 
         items.map(item => 
           ({id: item.key, ...item.payload.val()})
-        ));
+        )));
   }
 
   create(product: Product) {

@@ -1,6 +1,6 @@
 import {PagesDataSource} from './pages-data-source';
 import {Page} from '../models/Page';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 
 

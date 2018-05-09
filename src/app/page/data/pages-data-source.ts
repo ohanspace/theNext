@@ -1,4 +1,4 @@
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {Page} from '../models/Page';
 
 export abstract class PagesDataSource {

@@ -1,4 +1,6 @@
-import { of } from 'rxjs/observable/of';
+
+import {take} from 'rxjs/operators';
+import { of ,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
@@ -6,7 +8,6 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { ProductService } from 'app/store/shared/services/product.service';
-import { Observable } from 'rxjs/Observable';
 
 import { Product } from './../models/product.model';
 
@@ -19,6 +20,6 @@ export class ProductsResolver implements Resolve<Product[]> {
     state: RouterStateSnapshot
   ): Observable<Product[]> {
     console.log('resolving products...');
-    return this.productService.getAll().take(1);
+    return this.productService.getAll().pipe(take(1));
   }
 }

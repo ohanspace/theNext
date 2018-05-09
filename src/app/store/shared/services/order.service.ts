@@ -1,5 +1,7 @@
+
+import {map} from 'rxjs/operators';
 import { ShoppingCartService } from './shopping-cart.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Order } from '../models/order.model';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -24,18 +26,18 @@ export class OrderService {
   getAll(): Observable<Order[]> {
     return this.afDb
       .list('/orders')
-      .snapshotChanges()
-      .map(orders =>
+      .snapshotChanges().pipe(
+      map(orders =>
         orders.map(order => ({ id: order.key, ...order.payload.val() }))
-      );
+      ));
   }
 
   getByUserId(userId: string): Observable<Order[]> {
     return this.afDb
       .list('/orders', ref => ref.orderByChild('userId').equalTo(userId))
-      .snapshotChanges()
-      .map(orders =>
+      .snapshotChanges().pipe(
+      map(orders =>
         orders.map(order => ({ id: order.key, ...order.payload.val() }))
-      );
+      ));
   }
 }

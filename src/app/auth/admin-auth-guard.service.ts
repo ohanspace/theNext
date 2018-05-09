@@ -1,4 +1,6 @@
-import { Observable } from 'rxjs/Observable';
+
+import {map} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { UserService } from './user/user.service';
 import { AuthService } from './auth.service';
 import { CanActivate } from '@angular/router';
@@ -11,10 +13,10 @@ export class AdminAuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
       return this.authService
-        .user$
-        .map(user => {
+        .user$.pipe(
+        map(user => {
           return user.isAdmin;
-        });
+        }));
   }
   
 }
